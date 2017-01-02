@@ -31,7 +31,7 @@ void Masura_fizica::set_nume(string nume) {
 	this->nume = nume;
 
 }
-	
+
 void Masura_fizica::set_um_si(string um_str) {
 	this->um_si = new float[this->nr_um];
 	int index = 0;
@@ -121,13 +121,79 @@ void test_data(Masura_fizica* marimi, int nr_marimi_fizice) {
 		}
 		cout << endl;
 	}
-} 
+}
 
 int main() 
-{ 
+{
 	int nr_marimi_fizice;
 	Masura_fizica* marimi = read_data(&nr_marimi_fizice);
-	test_data(marimi, nr_marimi_fizice);
+//	test_data(marimi, nr_marimi_fizice);
+	int option;
+	int from;
+	int to;
+	float value;
+
+	while(true) {
+
+marime_fizica:
+		cout << "\n------------------\n";
+		cout << "Alege marimea fizica\n";
+		for (int i = 0; i < nr_marimi_fizice; i++) {
+			cout << i + 1<< "    " << marimi[i].nume << endl;
+		}
+
+		cout << "Marime fizica: ";
+		if(!(cin >> option) || option <= 0 || option > nr_marimi_fizice) {
+			cout << "\nValoarea nu este valida!\n";
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			goto marime_fizica;
+		}
+
+		option -= 1;
+
+um_init:
+		cout << "\n------------------\n";
+		cout << "Alege unitatea de masura initiala!\n";
+		for (int j = 0; j < marimi[option].nr_um; j++) {
+			cout << j + 1 << "    " << marimi[option].um[j] << endl;
+		}
+
+		cout << "Um initiala: ";
+		if(!(cin >> from) || from <= 0 || from > marimi[option].nr_um) {
+			cout << "\nValoarea nu este valida!\n";
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			goto um_init;
+		}
+um_final:
+
+		cout << "\n------------------\n";
+		cout << "Alege unitatea de masura finala!\n";
+		for (int j = 0; j < marimi[option].nr_um; j++) {
+			cout << j + 1<< "    " << marimi[option].um[j] << endl;
+		}
+
+		cout << "Um finala: ";
+		if(!(cin >> to) || to <= 0 || to > marimi[option].nr_um) {
+			cout << "\nValoarea nu este valida!\n";
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			goto um_final;
+		}
+
+		cout << "\n------------------\n";
+		cout << "Valoarea de convertit: ";
+		while(!(cin >> value))
+		{
+			cout << "\nValoarea nu este valida!\n";
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Valoarea de convertit: ";
+		}
+		cout << "Gata\n" << endl;
+	}
+
 
 	return 0;
 }
