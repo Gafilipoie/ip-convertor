@@ -20,7 +20,7 @@ class Masura_fizica {
 	void set_nr_um(int num);
 	void set_um_si(string um_str);
 	void set_um(string um_str);
-	void get_conversion(int from, int to);
+	float get_conversion(int from, int to, float value);
 };
 
 void Masura_fizica::set_nr_um(int num) {
@@ -56,9 +56,7 @@ void Masura_fizica::set_um(string um_str) {
 	}
 }
 
-void Masura_fizica::get_conversion(int from, int to) {
-
-
+float Masura_fizica::get_conversion(int from, int to, float value) {
 }
 
 
@@ -134,6 +132,8 @@ int main()
 	float value;
 	int back;
 	int quit;
+	int end;
+	float result;
 
 	while(true) {
 
@@ -212,6 +212,7 @@ um_final:
 
 		cout << "\n------------------\n";
 		cout << "Valoarea de convertit: ";
+
 		while(!(cin >> value))
 		{
 			cout << "\nValoarea nu este valida!\n";
@@ -220,7 +221,27 @@ um_final:
 			cout << "\n------------------\n";
 			cout << "Valoarea de convertit: ";
 		}
-		cout << "Gata\n" << endl;
+
+		result = marimi[option].get_conversion(from - 1, to - 1, value);
+		cout << value << " " << marimi[option].um[from - 1] <<
+			" = " << result << " " << marimi[option].um[to - 1] << endl;
+
+end:
+		cout << "\n------------------\n";
+		cout << "1    Executa o alta conversie\n";
+		cout << "2    Quit\n";
+
+		if(!(cin >> end) || end < 1 || end > 2) {
+			cout << "\nValoarea nu este valida!\n";
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			goto end;
+		}
+		if (end == 2) {
+			return 0;
+		} else {
+			goto marime_fizica;
+		}
 	}
 
 
