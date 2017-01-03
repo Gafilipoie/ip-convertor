@@ -57,6 +57,7 @@ void Masura_fizica::set_um(string um_str) {
 }
 
 float Masura_fizica::get_conversion(int from, int to, float value) {
+	return value * this->um_si[from] / this->um_si[to];
 }
 
 
