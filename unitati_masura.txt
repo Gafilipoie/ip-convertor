@@ -1,5 +1,41 @@
-1
+10
 Lungime
 7
 mm	cm	dm	m	dam	hm	km
 0.001	0.01	0.1	1	10	100	1000
+Arie
+7
+mm2	cm2	dm2	m2	dam2	hm2	km2
+0.000001	0.0001	0.01	1	100	10000	1000000
+Volum
+7
+mm3	cm3	dm3	m3	dam3	hm3	km3
+0.000000001	0.000001	0.001	1	1000	1000000	1000000000
+Timp
+5
+sec	min	ora	zi	sapt
+0.00027777777778	0.0166666667	1	24	168
+Viteza
+6
+m/s	m/min	m/h	km/s	km/min	km/h
+1	0.0166666667	0.00027777777778	1000	16.6666667	0.27777777778
+Temperatura
+4
+C	F	K	R	Ra	Re
+1	1	1	1	1	1
+Masa
+7
+mg	cg	dg	g	dag	hg	kg
+0.001	0.01	0.1	1	10	100	1000
+Energie
+4
+J	KJ	Kcal	kW-h
+1	1000	4184	3.6e+6
+Presiune
+2
+bar	psi
+1	0.0689476
+Densitate
+8
+g/mm3	g/cm3	g/m3	g/ml	g/l	kg/cm3	kg/m3	kg/l
+1000000000	1000000	1	1000000	1000	1000000000	1000	1000000
