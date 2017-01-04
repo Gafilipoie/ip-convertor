@@ -21,6 +21,9 @@ class Masura_fizica {
 	void set_um_si(string um_str);
 	void set_um(string um_str);
 	float get_conversion(int from, int to, float value);
+	float temperature_to_C(string um, float value);
+	float temperature_from_C(string um, float value);
+	float convert_temepature(string from, string to, float value);
 };
 
 void Masura_fizica::set_nr_um(int num) {
@@ -57,9 +60,43 @@ void Masura_fizica::set_um(string um_str) {
 }
 
 float Masura_fizica::get_conversion(int from, int to, float value) {
+	if (this->nume == "Temperatura")
+		return convert_temepature(um[from], um[to], value);
+
 	return value * this->um_si[from] / this->um_si[to];
 }
 
+
+float Masura_fizica::temperature_to_C (string um, float value) {
+	if (um == "C")
+	       return value;
+	if (um == "K")
+	       return value - 273.15;
+	if (um == "F")
+	       return  (value - 32) / 1.8;
+	if (um == "Ra")
+	       return (value - 32 - 459.67) / 1.8;
+	if (um == "Re")
+	       return value * 1.25;
+	return 0;
+}
+
+float Masura_fizica::temperature_from_C (string um, float value) {
+	if (um == "C")
+	       return value;
+	if (um == "K")
+	       return value + 273.15;
+	if (um == "F")
+	       return  value * 1.8 + 32;
+	if (um == "Ra")
+	       return  value * 1.8 + 32 + 459.67;
+	if (um == "Re")
+	       return value/1.25;
+	return 0;
+}
+float Masura_fizica::convert_temepature(string from, string to, float value) {
+	return temperature_from_C(to, temperature_to_C(from, value));
+}
 
 
 Masura_fizica* read_data(int* nr_marimi_fizice) {
