@@ -20,9 +20,9 @@ Viteza
 m/s	m/min	m/h	km/s	km/min	km/h
 1	0.0166666667	0.00027777777778	1000	16.6666667	0.27777777778
 Temperatura
-4
-C	F	K	R	Ra	Re
-1	1	1	1	1	1
+5
+C	F	K	Ra	Re
+1	1	1	1	1
 Masa
 7
 mg	cg	dg	g	dag	hg	kg

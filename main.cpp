@@ -3,7 +3,7 @@
 #include <string>
 #include <boost/foreach.hpp>
 #include <boost/tokenizer.hpp>
-
+#include <cstdlib>
 #define FILE_NAME "unitati_masura.txt"
 
 using namespace std;
@@ -110,32 +110,41 @@ Masura_fizica* read_data(int* nr_marimi_fizice) {
 	std::getline(file, str);
 	if ((*nr_marimi_fizice = stoi(str)) == 0) {
 		cout << "Numarul de marimi fizice nu poate fi 0!\n";
-		return 0;
+		return NULL;
 	}
 
 	marimi = new Masura_fizica[*nr_marimi_fizice];
 
-	while (std::getline(file, str)) {
+	while (true) {
+		// se citeste numele marimii fizice
+		getline(file, str);
 
+		if (file.eof()) { break;}
 		marimi[index].set_nume(str);
 
-		if (getline(file, str) == false) {
+		// se citeste numarul unitatilor de masura
+		getline(file, str);
+		if (file.eof()) {
 			cout << "Fisierul de date nu este valid!\n";
-			return 0;
+			return NULL;
 		}
 
 		marimi[index].set_nr_um(stoi(str));
 
-		if (getline(file, str) == false) {
+		// se citesc unitatile de masura
+		getline(file, str);
+		if (file.eof()) {
 			cout << "Fisierul de date nu este valid!\n";
-			return 0;
+			return NULL;
 		}
 
 		marimi[index].set_um(str);
 
-		if (getline(file, str) == false) {
+		// se citeste vecgorul de conversii pentru unitatile de masura
+		getline(file, str);
+		if (file.eof()) {
 			cout << "Fisierul de date nu este valid!\n";
-			return 0;
+			return NULL;
 		}
 		marimi[index].set_um_si(str);
 		index++;
@@ -163,6 +172,9 @@ int main()
 {
 	int nr_marimi_fizice;
 	Masura_fizica* marimi = read_data(&nr_marimi_fizice);
+	if (marimi == NULL) {
+		return 0;
+	}
 //	test_data(marimi, nr_marimi_fizice);
 	int option;
 	int from;
@@ -174,7 +186,6 @@ int main()
 	float result;
 
 	while(true) {
-
 marime_fizica:
 		cout << "\n------------------\n";
 		cout << "Alege marimea fizica\n";
